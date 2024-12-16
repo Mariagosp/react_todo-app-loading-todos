@@ -10,7 +10,7 @@ import { ErrorNotification } from './components/ErrorNotification';
 
 export const App: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
-  const [errorMessage, setErrorMessage] = useState<string | null>('');
+  const [errorMessage, setErrorMessage] = useState<string>('');
   const [filter, setFilter] = useState<Filter>(Filter.All);
 
   const filteredTodos = todos.filter(todo => {
@@ -28,10 +28,13 @@ export const App: React.FC = () => {
   };
 
   useEffect(() => {
-    clearError();
     getTodos()
       .then(setTodos)
-      .catch(() => setErrorMessage('Unable to load todos'));
+      .catch(() => {
+        setErrorMessage('Unable to load todos');
+        setTimeout(() => setErrorMessage(''), 3000);
+      });
+
   }, []);
 
   const handleFilterChange = (newFilter: Filter) => {
