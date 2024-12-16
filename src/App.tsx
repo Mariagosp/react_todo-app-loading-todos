@@ -23,10 +23,6 @@ export const App: React.FC = () => {
 
   const notCompletedTodos = todos.filter(todo => !todo.completed).length;
 
-  const clearError = () => {
-    setErrorMessage('');
-  };
-
   useEffect(() => {
     getTodos()
       .then(setTodos)
@@ -34,7 +30,6 @@ export const App: React.FC = () => {
         setErrorMessage('Unable to load todos');
         setTimeout(() => setErrorMessage(''), 3000);
       });
-
   }, []);
 
   const handleFilterChange = (newFilter: Filter) => {
@@ -157,7 +152,7 @@ export const App: React.FC = () => {
         )}
       </div>
 
-      <ErrorNotification errorMessage={errorMessage} clearError={clearError} />
+      <ErrorNotification errorMessage={errorMessage} />
     </div>
   );
 };

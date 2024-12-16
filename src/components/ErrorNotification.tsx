@@ -3,11 +3,10 @@ import cn from 'classnames';
 
 type Props = {
   errorMessage: string | null;
-  clearError: () => void;
 };
 
 export const ErrorNotification: React.FC<Props> = props => {
-  const { errorMessage, clearError } = props;
+  const { errorMessage } = props;
 
   return (
     <div
@@ -24,7 +23,6 @@ export const ErrorNotification: React.FC<Props> = props => {
         data-cy="HideErrorButton"
         type="button"
         className="delete"
-        // onClick={clearError}
       />
       {`${errorMessage}`}
     </div>
